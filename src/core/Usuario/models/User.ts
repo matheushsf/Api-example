@@ -1,4 +1,4 @@
-export default interface Usuario {
+export default interface User {
     Id: string
     UserName: string
     Password: string

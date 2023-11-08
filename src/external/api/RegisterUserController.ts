@@ -1,6 +1,6 @@
 import { Express } from "express";
 
-export default class RegistrarUsuarioController{
+export default class RegisterUserController{
     // constructor(
     //     servidor: Express,
     //     UseCase: 
