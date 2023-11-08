@@ -1,0 +1,78 @@
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+    Id String @id
+    UserName String @unique @db.VarChar(250)
+    Password String @db.VarChar(512)
+    CreatedAt DateTime 
+    UpdateAt DateTime 
+    DeletedAt DateTime 
+    Collaborator Collaborator[]
+
+    @@map("users")
+}
+
+model Collaborator {
+    Id String @id
+    Name String @db.VarChar(250)
+    UserId String
+    author User @relation(fields: [UserId], references: [Id])
+    CreatedAt DateTime 
+    UpdateAt DateTime 
+    DeletedAt DateTime 
+    TimeTracker TimeTracker[]
+
+    @@map("collaborators")
+}
+
+model Project {
+    Id String @id
+    Name String @db.VarChar(250)
+    CreatedAt DateTime 
+    UpdateAt DateTime 
+    DeletedAt DateTime 
+    Task Task[]
+
+    @@map("projects")
+}
+
+model Task {
+    Id String @id
+    Name String @db.VarChar(250)
+    Description String @db.VarChar(Max)
+    ProjectId String
+    author Project @relation(fields: [ProjectId], references: [Id])
+    CreatedAt DateTime 
+    UpdateAt DateTime 
+    DeletedAt DateTime 
+    TimeTracker TimeTracker[]
+    
+    @@map("tasks")
+}
+
+model TimeTracker {
+    Id String @id
+    StartDate DateTime
+    EndDate DateTime
+    TimeZoneId String @db.VarChar(250)
+    TaskId String
+    task Task @relation(fields: [TaskId], references: [Id])
+    CollaboratorId String
+    collaborator Collaborator @relation(fields: [CollaboratorId], references: [Id])
+    CreatedAt DateTime 
+    UpdateAt DateTime 
+    DeletedAt DateTime 
+
+
+    @@map("time_trackers")
+}
