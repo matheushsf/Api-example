@@ -10,14 +10,9 @@ export default class RegisterUserController{
     ){
         servidor.post('/api/usuario/register', async (req, res)=>{
             try{
-                console.log(req.body.userName)
-                if(!req.body.userName || !req.body.password){
-                    return res.json({
-                        error: true,
-                        message: Errors.USERNAME_PASSOWRD,
-                    }).status(400)
-                }
-
+                
+                if(!req.body.userName.userName || !req.body.userName.password) throw new Error(Errors.USERNAME_PASSOWRD)
+                
                 const user = await this.UseCase.registerUser(req.body.userName, req.body.password)
 
                 return res.json({

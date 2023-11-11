@@ -8,12 +8,12 @@ export class RegisterUserUseCase {
     constructor(private userRepository: UserRepository) { }
 
     async registerUser(userName: string, password: string) {
+
         const userExist = await this.userRepository.findUserByUsername(userName)
         if (userExist) throw new Error(Errors.USUARIO_EXIST)
 
         const salt = bcrypt.genSaltSync(10)
         const hashPassword = bcrypt.hashSync(password, salt)
-
 
         const user: User = {
             Id: uuidv4(),
@@ -23,7 +23,6 @@ export class RegisterUserUseCase {
             UpdateAt: new Date(),
             DeletedAt: new Date()
         }
-
 
         const userCreate = await this.userRepository.CreateUser(user)
         console.log(userCreate)

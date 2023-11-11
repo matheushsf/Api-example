@@ -3,6 +3,8 @@ import express from 'express'
 import RegisterUserController from './external/api/RegisterUserController'
 import { RegisterUserUseCase } from './core/user/service/RegisterUser'
 import UserRepository from './external/repository/user/UserRepository'
+import LoginUserController from './external/api/LoginUserController'
+import { LoginUserUseCase } from './core/user/service/LoginUser'
 dotenv.config()
 
 const app = express()
@@ -19,6 +21,11 @@ app.listen(porta, ()=> {
 
 // Register User -----------------
 
-const repository = new UserRepository()
-const useCase = new RegisterUserUseCase(repository)
-new RegisterUserController(app, useCase)
+const repositoryUser = new UserRepository()
+const useCaseRegisterUser = new RegisterUserUseCase(repositoryUser)
+new RegisterUserController(app, useCaseRegisterUser)
+
+// Login User
+
+const useCaseLoginUser = new LoginUserUseCase(repositoryUser)
+new LoginUserController(app, useCaseLoginUser)
