@@ -1,8 +1,8 @@
 import UserRepository from "@/external/repository/user/UserRepository";
-import User from '@/core/user/models/User';
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcrypt'
 import Errors from "@/shared/Errors";
+import { User } from "@prisma/client";
 
 export class RegisterUserUseCase {
     constructor(private userRepository: UserRepository) { }
