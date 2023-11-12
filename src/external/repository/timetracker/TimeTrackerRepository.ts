@@ -13,4 +13,10 @@ export default class TimeTrackerRepository {
             throw new Error("Erro ao realizar operacão")
         }
     }
+
+    async GetAllTimeTrackerByTask(TaskId: string): Promise<TimeTracker[]>{
+        return await prisma.timeTracker.findMany({
+            where: { TaskId }
+          });
+    }
 }

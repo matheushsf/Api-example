@@ -4,7 +4,7 @@ import { Project } from '@prisma/client';
 export default class ProjectRepository {
     constructor() { }
 
-    async FindAllProjects() {
+    async GetAllProjects() {
         try {
             return await prisma.project.findMany()
         } catch (error) {

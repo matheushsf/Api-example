@@ -1,4 +1,4 @@
-import {TaskUseCase } from "@/core/task/service/TaskService";
+import {TaskUseCase } from "@/core/task/service/TaskUseCase";
 import Errors from "@/shared/Errors";
 import { Express } from "express";
 
@@ -19,6 +19,7 @@ export default class CreateTaskController{
                 return res.json({
                     error: false,
                     message: 'Tarefa criada com sucesso.',
+                    task
                 }).status(201)
 
             }catch(erro: any){

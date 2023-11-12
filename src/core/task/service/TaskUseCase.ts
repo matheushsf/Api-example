@@ -41,7 +41,7 @@ export class TaskUseCase {
     }
 
     async GetAllTask() {
-        return await this.taskRepository.FindAllTasks()
+        return await this.taskRepository.GetAllTasks()
     }
 }
 

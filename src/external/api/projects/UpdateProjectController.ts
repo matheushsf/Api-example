@@ -1,24 +1,24 @@
-import { TaskUseCase } from "@/core/task/service/TaskUseCase";
+import { ProjectUseCase } from "@/core/project/service/ProjectUseCase";
 import Errors from "@/shared/Errors";
 import { Express } from "express";
 
-export default class UpdateTaskController{
+export default class UpdateProjectsController{
     constructor(
         servidor: Express,
-        private UseCase: TaskUseCase,
+        private UseCase: ProjectUseCase,
         ...middleware: any[]
     ){
-        servidor.post('/api/task/update',...middleware, async (req, res)=>{
+        servidor.post('/api/project/update',...middleware, async (req, res)=>{
             try{
                 const { IdTask,Name, Description, ProjectId} = req.body
 
                 if(!Name || !Description || !ProjectId || !IdTask) throw new Error(Errors.ERROR_CREATE_TASK)
 
-                await this.UseCase.UpdateTask(Name, Description, ProjectId, IdTask)
+                await this.UseCase.UpdateProject(Name, ProjectId )
 
                 return res.json({
                     error: false,
-                    message: 'Tarefa atualizada com sucesso.',
+                    message: 'Projeto atualizado com sucesso.',
                 }).status(201)
 
 

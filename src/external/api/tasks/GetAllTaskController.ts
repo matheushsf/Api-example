@@ -1,8 +1,8 @@
-import { TaskUseCase } from "@/core/task/service/TaskService";
+import { TaskUseCase } from "@/core/task/service/TaskUseCase";
 import Errors from "@/shared/Errors";
 import { Express } from "express";
 
-export default class FindAllTaskController{
+export default class GetAllTaskController{
     constructor(
         servidor: Express,
         private UseCase: TaskUseCase,
@@ -10,10 +10,6 @@ export default class FindAllTaskController{
     ){
         servidor.post('/api/task/findAll',...middleware, async (req, res)=>{
             try{
-                const { IdTask } = req.body
-
-                if(!IdTask) throw new Error(Errors.ERROR_DELETE_TASK)
-
                 const AllTasks = await this.UseCase.GetAllTask()
 
                 return res.json({

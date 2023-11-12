@@ -1,4 +1,4 @@
-import { TaskUseCase } from "@/core/task/service/TaskService";
+import { TaskUseCase } from "@/core/task/service/TaskUseCase";
 import Errors from "@/shared/Errors";
 import { Express } from "express";
 

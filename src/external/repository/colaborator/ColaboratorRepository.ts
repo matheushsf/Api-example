@@ -1,9 +1,9 @@
 import { prisma } from '../Prisma'
 
-export default class UserRepository {
+export default class CollaboratorRepository {
     constructor( ){ }
 
-    async findAllCollaborator(){
+    async GetAllCollaborator(){
         try{
             return  await prisma.collaborator.findMany()
         }catch(error){

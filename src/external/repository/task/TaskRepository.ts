@@ -5,7 +5,7 @@ export default class TaskRepository {
     constructor( ){ }
 
    
-    async FindAllTasks() {
+    async GetAllTasks() {
         try {
             return await prisma.task.findMany()
         } catch (error) {
