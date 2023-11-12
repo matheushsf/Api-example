@@ -1,7 +1,7 @@
 import { prisma } from '../Prisma'
 import { TimeTracker } from '@prisma/client';
 
-export default class UserRepository {
+export default class TimeTrackerRepository {
     constructor( ){ }
 
     async CreateTimeTracker(timeTracker: TimeTracker) {

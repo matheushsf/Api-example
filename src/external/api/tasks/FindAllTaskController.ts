@@ -1,24 +1,24 @@
-import {TaskUseCase } from "@/core/task/service/TaskService";
+import { TaskUseCase } from "@/core/task/service/TaskService";
 import Errors from "@/shared/Errors";
 import { Express } from "express";
 
-export default class CreateTaskController{
+export default class FindAllTaskController{
     constructor(
         servidor: Express,
         private UseCase: TaskUseCase,
         ...middleware: any[]
     ){
-        servidor.post('/api/task/create', ...middleware,async (req, res)=>{
+        servidor.post('/api/task/findAll',...middleware, async (req, res)=>{
             try{
-                const { Name, Description, ProjectId} = req.body
+                const { IdTask } = req.body
 
-                if(!Name || !Description || !ProjectId) throw new Error(Errors.ERROR_CREATE_TASK)
+                if(!IdTask) throw new Error(Errors.ERROR_DELETE_TASK)
 
-                const task = await this.UseCase.CreateTask(Name, Description, ProjectId)
+                const AllTasks = await this.UseCase.GetAllTask()
 
                 return res.json({
                     error: false,
-                    message: 'Tarefa criada com sucesso.',
+                    AllTasks
                 }).status(201)
 
             }catch(erro: any){

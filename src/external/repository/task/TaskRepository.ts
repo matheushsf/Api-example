@@ -1,7 +1,7 @@
 import { Task } from '@prisma/client'
 import { prisma } from '../Prisma'
 
-export default class UserRepository {
+export default class TaskRepository {
     constructor( ){ }
 
    

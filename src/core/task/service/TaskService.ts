@@ -1,22 +1,48 @@
+import TaskRepository from "@/external/repository/task/TaskRepository";
 import Errors from "@/shared/Errors";
 import { Task } from "@prisma/client";
+import { v4 as uuidv4 } from 'uuid';
 
 
-export class TaskService {
-    constructor() { }
 
-    async CreateTask(task: Task) {
-        const userExist = await this.userRepository.findUserByUsername(userName)
+export class TaskUseCase {
+    constructor(private taskRepository: TaskRepository) { }
 
-        if (!userExist) throw new Error(Errors.USUARIO_NOT_EXIST)
+    async CreateTask(Name: string, Description: string, ProjectId: string) {
+        let taskCreate: Task = {
+            Id: uuidv4(),
+            Name: Name,
+            Description: Description,
+            ProjectId: ProjectId,
+            CreatedAt: new Date(),
+            UpdateAt: new Date(),
+            DeletedAt: new Date()
+        }
 
-        const isMatch = await bcrypt.compare(password, userExist.Password)
+        await this.taskRepository.CreateTask(taskCreate)
+    }
 
-        if(!isMatch) throw new Error(Errors.ERROR_CREDENTIAL)
+    async UpdateTask(Name: string, Description: string, ProjectId: string, IdTask: string) {
+        let taskCreate: Task = {
+            Id: IdTask,
+            Name: Name,
+            Description: Description,
+            ProjectId: ProjectId,
+            CreatedAt: new Date(),
+            UpdateAt: new Date(),
+            DeletedAt: new Date()
+        }
 
-        const providerJWT = new ProviderJWT(process.env.SECRET_JWT!)
-        const tokenJWT = providerJWT.GenerateToken({idUser: userExist.Id})
+        await this.taskRepository.UpdateTask(taskCreate)
+    }
 
-        return tokenJWT;
+    async DeleteTask(idTask: string) {
+        await this.taskRepository.DeleteTask(idTask)
+    }
+
+    async GetAllTask() {
+        return await this.taskRepository.FindAllTasks()
     }
 }
+
+
