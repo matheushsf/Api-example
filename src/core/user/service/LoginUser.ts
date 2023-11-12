@@ -1,7 +1,8 @@
 import UserRepository from "@/external/repository/user/UserRepository";
 import bcrypt from 'bcrypt'
 import Errors from "@/shared/Errors";
-import { ProviderJWT } from "@/external/auth/providerJWT";
+import { ProviderJWT } from "@/external/auth/ProviderJWT";
+
 
 export class LoginUserUseCase {
     constructor(private userRepository: UserRepository) { }
@@ -15,7 +16,7 @@ export class LoginUserUseCase {
 
         if(!isMatch) throw new Error(Errors.ERROR_CREDENTIAL)
 
-        const providerJWT = new ProviderJWT(process.env.API_PORT!)
+        const providerJWT = new ProviderJWT(process.env.SECRET_JWT!)
         const tokenJWT = providerJWT.GenerateToken({idUser: userExist.Id})
 
         return tokenJWT;
