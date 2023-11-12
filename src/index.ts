@@ -1,9 +1,9 @@
 import dotenv from 'dotenv'
 import express from 'express'
-import RegisterUserController from './external/api/RegisterUserController'
+import RegisterUserController from './external/api/user/RegisterUserController'
 import { RegisterUserUseCase } from './core/user/service/RegisterUser'
 import UserRepository from './external/repository/user/UserRepository'
-import LoginUserController from './external/api/LoginUserController'
+import LoginUserController from './external/api/user/LoginUserController'
 import { LoginUserUseCase } from './core/user/service/LoginUser'
 dotenv.config()
 
