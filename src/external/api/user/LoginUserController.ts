@@ -18,7 +18,6 @@ export default class LoginUserController{
                     message: 'Login efetuado com sucesso.',
                     token
                 }).status(201)
-
             }catch(erro: any){
                 console.log(erro)
                 return res.json({
