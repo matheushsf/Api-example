@@ -13,7 +13,7 @@ export default class CreateTaskController{
             try{
                 const { StartDate, EndDate, TimeZoneId, TaskId, CollaboratorId} = req.body
 
-                if(!StartDate || !EndDate || !TimeZoneId || !TaskId || !CollaboratorId) throw new Error(Errors.ERROR_CREATE_TASK)
+                if(!StartDate || !EndDate || !TimeZoneId || !TaskId || !CollaboratorId) throw new Error(Errors.ERROR_CREATE_TIME_TRACKER)
 
                 const timetracker = await this.UseCase.CreateTimeTracker({StartDate, EndDate, TimeZoneId, TaskId, CollaboratorId})
 
