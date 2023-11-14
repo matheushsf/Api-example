@@ -15,7 +15,7 @@ export default function JWTMiddleware(){
           console.log(error)
           return res.status(400).json({ message: "Faça login novamente"});
         };
-
+        
         next()
     }
 }

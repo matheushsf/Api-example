@@ -11,7 +11,7 @@ export default class CreateProjectController{
         servidor.post('/api/project/create', ...middleware,async (req, res)=>{
             try{
                 const { Name } =  req.body 
-                if(!Name) throw new Error(Errors.ERROR_CREATE_TASK)
+                if(!Name) throw new Error(Errors.ERROR_CREATE_PROJECT)
 
                 const project = await this.UseCase.CreateProject(Name)
 

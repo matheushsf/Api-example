@@ -2,13 +2,6 @@ import { TimeTrackerDTO } from '@/core/timeTracker/service/TimeTrackerUseCase';
 import { TimeTracker } from '@prisma/client';
 import jwt from 'jsonwebtoken';
 
-// export interface TimeTrackerDTO{
-//   StartDate: string
-//   EndDate: string
-//   TimeZoneId: string
-//   TaskId: string
-//   CollaboratorId: string
-// }
 
 export function CheckIntervalConflict(newInterval: TimeTrackerDTO, allTimeTrackerByTask: TimeTracker[]) {
   const newIntervalStart = new Date(newInterval.StartDate);
