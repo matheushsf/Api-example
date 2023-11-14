@@ -8,7 +8,7 @@ export default class GetAllTaskController{
         private UseCase: TaskUseCase,
         ...middleware: any[]
     ){
-        servidor.post('/api/task/findAll',...middleware, async (req, res)=>{
+        servidor.get('/api/task/findAll',...middleware, async (req, res)=>{
             try{
                 const AllTasks = await this.UseCase.GetAllTask()
 

@@ -17,7 +17,7 @@ export default class CreateProjectController{
 
                 return res.json({
                     error: false,
-                    message: 'Projeto criada com sucesso.',
+                    message: 'Projeto criado com sucesso.',
                     project
                 }).status(201)
 

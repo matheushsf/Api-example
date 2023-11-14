@@ -7,14 +7,14 @@ export default class GetAllCollaboratorController{
         private UseCase: CollaboratorUseCase,
         ...middleware: any[]
     ){
-        servidor.post('/api/collaborator/GetAll',...middleware, async (req, res)=>{
+        servidor.get('/api/collaborator/GetAll',...middleware, async (req, res)=>{
             try{
 
                 const AllCollaborators = await this.UseCase.GetAllCollaborator()
 
                 return res.json({
                     error: false,
-                    AllCollaborators
+                    Projetos: AllCollaborators
                 }).status(201)
 
             }catch(erro: any){

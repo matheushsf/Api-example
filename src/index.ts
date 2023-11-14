@@ -1,4 +1,5 @@
 import dotenv from 'dotenv'
+import cors from 'cors'
 import express from 'express'
 import RegisterUserController from './external/api/user/RegisterUserController'
 import { RegisterUserUseCase } from './core/user/service/RegisterUser'
@@ -31,6 +32,7 @@ const app = express()
 const porta = process.env.API_PORT ?? 4000
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+app.use(cors())
 
 
 

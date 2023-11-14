@@ -20,10 +20,11 @@ export default class LoginUserController{
                 }).status(201)
 
             }catch(erro: any){
+                console.log(erro)
                 return res.json({
                     error: true,
                     message: erro.message,
-                }).status(400)
+                }).status(400).send()
             }    
         })
     }

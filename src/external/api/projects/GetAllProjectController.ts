@@ -7,7 +7,7 @@ export default class GetAllProjectController{
         private UseCase: ProjectUseCase,
         ...middleware: any[]
     ){
-        servidor.post('/api/project/GetAll',...middleware, async (req, res)=>{
+        servidor.get('/api/project/GetAll',...middleware, async (req, res)=>{
             try{
 
                 const AllTasks = await this.UseCase.GetAllProjects()
